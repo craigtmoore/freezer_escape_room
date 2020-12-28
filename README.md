@@ -1,1 +1,3 @@
-# freezer_escape_room
+# Freezer Escape Room
+
+A simple escape room puzzle written in python
