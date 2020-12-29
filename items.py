@@ -1,4 +1,4 @@
-import random
+from random import shuffle
 from typing import Set, List
 
 from inspectable import Inspectable
@@ -84,11 +84,14 @@ class TapePlayer(Usable, Inspectable, Interactable):
     def inspect(self) -> Set:
         if self.has_tape:
             print(self.description_start)
+
+            combination = get_circuit_panel_combination()
+
             print("It begins to play:")
-            print('  "The blue bird sings sweetly')
-            print('   in the green meadow')
-            print('   full of yellow flowers')
-            print('   as the red sun sets"')
+            print(f'  "The {combination[0]} bird sings sweetly')
+            print(f'   in the {combination[1]} meadow')
+            print(f'   full of {combination[2]} flowers')
+            print(f'   as the {combination[3]} sun sets"')
         else:
             print(self.description_start + " " + self.description_end_no_tape)
 
@@ -130,7 +133,7 @@ class Paper(Interactable, Inspectable):
     def interact(self, usable: Usable) -> List:
 
         combination = ""
-        for combo in get_combination():
+        for combo in get_chest_combination():
             combination += combo
 
         if isinstance(usable, Flashlight):
@@ -142,16 +145,32 @@ class Paper(Interactable, Inspectable):
         return []
 
 
-__combination = []
+__chest_combination = []
 
 
-def get_combination() -> List[str]:
-    if __combination:
-        return __combination
+def get_chest_combination() -> List[str]:
+    if __chest_combination:
+        return __chest_combination
 
-    letters = ['R', 'L']
+    letters = ['R', 'L', 'R']
+    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    shuffle(numbers)
     for i in range(0, 3):
-        number = random.randint(1, 9)
-        letter = letters[random.randint(0, 1)]
-        __combination.append(f"{number}{letter}")
-    return __combination
+        number = numbers[i]
+        letter = letters[i]
+        __chest_combination.append(f"{number}{letter}")
+    return __chest_combination
+
+
+__circuit_breaker_combination = []
+
+
+def get_circuit_panel_combination() -> List[str]:
+    if __circuit_breaker_combination:
+        return __circuit_breaker_combination
+
+    words = ['blue', 'red', 'green', 'yellow']
+    shuffle(words)
+    __circuit_breaker_combination.extend(words)
+
+    return __circuit_breaker_combination

@@ -1,7 +1,7 @@
 from typing import Set
 
 from inspectable import Inspectable
-from items import Tape, get_combination
+from items import Tape, get_chest_combination
 
 
 class Chest(Inspectable):
@@ -26,7 +26,7 @@ class Chest(Inspectable):
             numbers.append(input("What is the third number you enter? ").upper())
 
             print("You entered " + str(numbers))
-            if numbers == get_combination():
+            if numbers == get_chest_combination():
                 self.is_locked = False
                 print("The lock opens and you recover a cassette tape from inside the box")
                 found_items.add(Tape())

@@ -22,7 +22,7 @@ class DoorButton(Interactable, Inspectable):
         print("You press the button...")
 
         if self.circuit_breaker.is_powered:
-            print("  You hear a motor active, and the door opens. You escape to freedom.")
+            print("  You hear a motor activate, and the door opens. You escape to freedom.")
             return True
 
         print("  Nothing happens, it seems there is no power.")
