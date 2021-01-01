@@ -32,7 +32,7 @@ class Main():
         option = ''
         valid_options = ['I', 'U', 'L']
         while not option:
-            option = input(f"you have {len(valid_options)} options [I]nspect, [L]ook, or [U]se: ").upper()
+            option = input(f"you have {len(valid_options)} options [I]nspect, [L]ook, or [U]se: ")[0].upper()
             if option not in valid_options:
                 print(f"'{option}' is not a valid option")
                 option = ''
@@ -49,7 +49,7 @@ class Main():
             print(" - look [D]own")
             print(" - look [R]ight")
             print(" - look [L]eft")
-            option = input("What option do you choose? ").upper()
+            option = input("What option do you choose? ")[0].upper()
             if option not in valid_options:
                 print(f"'{option}' is not a valid option")
 
@@ -110,6 +110,7 @@ class Main():
             option = self.get_main_options()
 
             if option == 'L':
+
                 option = self.get_look_option()
                 if option == 'F':
                     self.print_containers('forward', self.forward_containers)
